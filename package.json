@@ -1,0 +1,44 @@
+{
+  "name": "io",
+  "version": "1.0.0",
+  "description": "A chat application real time wiht node, express, mongodb and socke.io",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon --inspect server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blackblue2712/node-io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/blackblue2712/node-io/issues"
+  },
+  "homepage": "https://github.com/blackblue2712/node-io#readme",
+  "dependencies": {
+    "async": "^2.6.2",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.18.3",
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^2.0.3",
+    "cookie-parser": "^1.4.4",
+    "dotenv": "^7.0.0",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "express-validator": "^5.3.1",
+    "flash": "^1.1.0",
+    "formidable": "^1.2.1",
+    "lodash": "^4.17.11",
+    "mongoose": "^5.4.21",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.18.10",
+    "passport": "^0.4.0",
+    "passport-facebook": "^3.0.0",
+    "passport-google-oauth": "^2.0.0",
+    "passport-local": "^1.0.0",
+    "socket.io": "^2.2.0"
+  }
+}

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Footballkik</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/login.css">
+</head>
+
+<body>
+
+    <div class="container logo-container">
+        <div class="row">
+            <div class="col-md-12">
+                    <nav class="navbar" id="nav_bar" role="navigation">
+
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle navbar_icon" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span> 
+                                <span class="icon icon-bar"></span>
+                                <span class="icon icon-bar"></span>
+                                <span class="icon icon-bar"></span>
+                            </button>
+                            <h1 class="logo-div">
+                                <a href="/">Footballkik</a>
+                            </h1>
+                        </div>
+
+
+
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                            <ul class="nav navbar-nav navbar-right">
+                                <li style="padding-right: 50px;">
+                                    <h2 class="reg-div">
+                                        <a href="/signin">
+                                            Login
+                                        </a>
+                                    </h2>
+
+                                </li>
+
+
+                                <li class="reg_link2">
+                                    <h2 class="reg-div">
+                                        <a href="/signup">
+                                            Register
+                                        </a>
+                                    </h2>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </nav>
+                </div>
+
+        </div>
+    </div>
+
+<div id="main">
+    <div class="main">
+        <form action="/signup" method="post">
+           
+            <h1>
+                Register
+            </h1>
+
+            <% if(hasError) { %>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <%= message %>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <% } %>
+
+            <div class="inset">
+                <p>
+                  <label for="username">USERNAME</label>
+                  <input type="text" name="username" class="" placeholder="">
+                </p>
+
+                <p>
+                    <label for="email">EMAIL ADDRESS</label>
+                    <input type="text" name="email" placeholder="" />
+                </p>
+                <p>
+                    <label for="password">PASSWORD</label>
+                    <input type="password" name="password" placeholder="" />
+                </p>
+
+            </div>
+
+            <p class="p-container">
+                <span><a href="/signin">Login</a></span>
+                <input type="submit" class="login-log" style=" background: #3bb5ec; border: #3bb5ec;" value="Register">
+            </p>
+            <p class="p-container">
+                <span>  
+                    <a href="/auth/facebook" class=""><i class="fab fa-facebook-f"></i> Login with facebook</a>
+                </span>
+            </p>
+            <p class="p-container">
+                <span>
+                    <a href="/auth/google" class=""><i class="fab fa-google-plus-g"></i> Login with google</a>
+                </span>
+            </p>
+        </form>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
