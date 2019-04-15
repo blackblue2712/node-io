@@ -9,4 +9,11 @@ module.exports.getSignup = (req, res) => {
     res.render("auth/signup", {title: "Register", message: errors, hasError: errors.length > 0});
 }
 
+module.exports.getSignout = (req, res) => {
+    req.logout();
+    req.session.destroy((err) => {
+        res.redirect("/signin");
+    });
+}
+
 // Post

@@ -4,11 +4,13 @@ const router = express.Router();
 
 const {
     getSignup,
-    getSignin
+    getSignin,
+    getSignout
 } = require("../controllers/auth");
 const { userSignupValidator, userSigninValidator } = require("../validate");
 
 router.get("/signup", getSignup);
+router.get("/signout", getSignout);
 router.get("/signin", getSignin);
 
 // facebook

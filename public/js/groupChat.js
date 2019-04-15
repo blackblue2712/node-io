@@ -25,11 +25,21 @@ $(document).ready( function() {
 
             $("#numValue").text(`(${usersList.length})`);
             $("#users").html(ol);
-        })
+        });
+
+        socket.on("server-displayMessage", () => {
+            setTimeout(() => {
+                $("#reload").load(location.href + " #reload")
+            }, 1000)
+        });
     })
 
     socket.on("server-newmessage", (message) => {
         let template = $("#template-message").html();
+        console.log(sender, message.sender)
+        if(sender !== message.sender) {
+            template = $("#template-message-left").html();
+        }
         let newmessage = Mustache.render(template, {
             username: message.sender,
             text: message.msg
@@ -41,16 +51,21 @@ $(document).ready( function() {
 
     $("#message-form").submit( function(e) {
         e.preventDefault();
-        chatFriend();
-        $(this).find("#msg").val('');
-    })
-
-    // 
-    function chatFriend() {
         let message = {};
         message.msg = $("#message-form #msg").val();
         message.room = room;
         message.sender = sender;
         socket.emit("client-newmessage", message);
-    }
+
+        $.ajax({
+            url: `/chat/${room}`,
+            type: 'POST',
+            data: {message: message.msg},
+            success: function () {
+                console.log("group-message-sent");
+            }
+        })
+
+        $(this).find("#msg").val('');
+    });
 })

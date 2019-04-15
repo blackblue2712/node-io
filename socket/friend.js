@@ -7,7 +7,7 @@ module.exports = (io) => {
         })
 
         socket.on("client-friend-request", (params, cb) => {
-            console.log(params)
+            // console.log(params)
             io.to(params.receiver).emit('server-friend-request', {
                 from: params.sender,
                 to: params.receiver

@@ -1,0 +1,67 @@
+<% 
+let numberOfMessage = 0;
+
+for(let i = 0; i < chat.length; i++) {
+    if(chat[i].body.isRead === false && chat[i].body.senderName !== user.username) {
+        numberOfMessage = numberOfMessage + 1;
+    }
+}   
+%>
+
+<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+    <span class="fa fa-comments"></span> <b class="caret"></b> 
+    <% if(numberOfMessage > 0) { %>
+        <span class="label label-primary nav-label-icon" id=""> <%= numberOfMessage %> </span>
+    <% } else { %>
+        <span class="label label-primary nav-label-icon" id=""></span>
+    <% } %>
+</a>
+<ul class="dropdown-menu dmenu">
+    <li>
+        <div class="navbar-login">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="dropdown-tag">
+                        <h3 class="text-center dropdown-tag-head">
+                            Notifications
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <% for(mess of chat) { %>
+                    <% if (mess.body.senderName !== user.username) { %>
+                    <a 
+                        href="/chat/<%= mess.body.senderName.replace(/ /g, '-').toLowerCase() %>.<%= user.username.replace(/ /g, '-').toLowerCase() %>"
+                        data-id="<%= mess.body.sender %>"
+                        class="message-notification"
+                    >
+                    <div class="row">
+                        <div class="col-md-3">
+                            <p class="text-center">
+                            <img src="https://placehold.it/300x300" class="img-circle img-responsive dropdown-img" />
+                            </p>
+                        </div>
+                        <div class="col-md-9 pleft-0">
+                            <div class="row">
+                                <div class="col-md-12 textRow">
+                                    <div class="col-md-12" id="textRow">
+                                        <p class="text-left drop-name">
+                                            <strong><%= mess.body.senderName %></strong>
+                                        </p>
+                                        <%= mess.body.message %>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                    <% } %>
+                <% } %>
+                <hr class="dropdown-divider" />
+
+            </div>
+        </div>
+    </li>
+
+</ul>

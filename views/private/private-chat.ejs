@@ -101,8 +101,8 @@
                         <div class="row">
                             <div class="new_message_head">
                                 <div class="pull-left">
-                                <button class="club_name">
-                                  Group Name
+                                <button id="receiver_name">
+                                  
                                 </button>
                                 </div>
                                 <div class="pull-right">
@@ -111,31 +111,32 @@
 
                             <div class="chat_area">
                                 <ul id="messages" class="list-unstyled">
-                                    <% for(messG of chatGroup) { %>
-                                        <% if(messG.senderId.username !== user.username) { %>
-                                        <li class="left">
-                                            <span class="chat-img1 pull-left">
-                                                <img src="<%= messG.senderId.userImage %>" class="img-circle">
-                                            </span>
-                                            <div class="chat-body1">
-                                                <span class="chat-name"><%= messG.senderId.username %></span>
-                                                <br>
-                                                <%= messG.body %>
-                                            </div>
-                                        </li>
-                                        <% } else { %>
+                                    <% for(mess of conversation) { %>
+                                        <% if(mess.senderName === user.username) { %>
                                             <li class="right" style="display: flex; justify-content: flex-end">
                                                 <div class="chat-body1" style="margin-right: 5px; text-align: right">
-                                                    <span class="chat-name"><%= messG.senderId.username %></span>
+                                                    <span class="chat-name"><%= mess.senderName %></span>
                                                     <br>
-                                                    <%= messG.body %>
+                                                    <%= mess.message %>
                                                 </div>
                                                 <span class="chat-img1 pull-left">
-                                                    <img src="<%= messG.senderId.userImage %>" class="img-circle">
+                                                    <img src="<%= mess.userImage %>" class="img-circle">
                                                 </span>
+                                            </li>
+                                        <% } else { %>
+                                            <li class="left">
+                                                <span class="chat-img1 pull-left">
+                                                    <img src="<%= mess.sender.userImage %>" class="img-circle">
+                                                </span>
+                                                <div class="chat-body1">
+                                                    <span class="chat-name"><%= mess.senderName %></span>
+                                                    <br>
+                                                    <%= mess.message %>
+                                                </div>
                                             </li>
                                         <% } %>
                                     <% } %>
+
                                     <script id="template-message" type="text/template">
                                         <li class="right" style="display: flex; justify-content: flex-end">
                                             <div class="chat-body1">
@@ -164,9 +165,7 @@
                             </div>
 
                             <div class="message_write">
-                              <form action="#" id="message-form" method="post">
-                                  <input type="hidden" id="groupName" value="<%= name %>">
-                                  <input type="hidden" id="sender" value="<%= user.username %>">
+                              <form action="#" id="message_form" method="post">
                                   <input class="form-control" name="message" id="msg" placeholder="Type a message"></input>
                                   <div class="clearfix"></div>
                                   <div class="chat_bottom">
@@ -176,59 +175,6 @@
                                   </div>
                               </form>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-3 col-md-3 mob-50 mob-clearfix">
-
-
-                        <div class="new_message_head">
-                            <div class="pull-left">
-                                <button class="club_fans">
-                                    <i class="fa fa-users" aria-hidden="true" style="padding-right:15px; color:#4aa1f3 !important;"></i>
-                                    Online Club Fans <span id="numValue"></span>
-                                </button>
-                            </div>
-                        </div>
-
-
-
-                        <div class="gr-rightsidebar">
-
-                            <div id="myModal" class="modal fade" role="dialog">
-                              <div class="modal-dialog">
-
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h3 class="modal-title" id="name"></h3>
-                                  </div>
-                                  <div class="modal-body">
-                                    <form action="" method="get" id="add_friend">
-                                        <input type="hidden" name="receiverName" id="receiverName" value="">
-                                        <input type="hidden" name="senderName" id="sender-name" value="">
-                                        <button type="submit" id="friend-add" class="btn add"><i class="fa fa-user"></i> Add Friend</button>
-                                        
-                                        <a id="nameLink" class="btn ">View Profile</a>
-
-                                        <div id="myTest">
-                                            
-                                        </div>
-                                    </form>
-                                  </div>
-                                  <div class="modal-footer">
-                                    <button type="button" class="btn btn_close" data-dismiss="modal">Close</button>
-                                  </div>
-                                </div>
-
-                              </div>
-                            </div>
-
-                            <div class="col-md-12"  id="main">
-                                <div id="users"></div>
-                                
-                            </div>
-
                         </div>
                     </div>
 
@@ -243,7 +189,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>  
 <script src="/socket.io/socket.io.js"></script>
-<script src="/js/groupChat.js"></script>
+<script src="/js/pm.js"></script>
 <script src="/js/friend.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
 <script src="/js/global.js"></script>

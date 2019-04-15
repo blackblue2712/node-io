@@ -13,10 +13,10 @@
     <%- include partials/navbar.ejs %>
   
 <div class="col-md-12">
-   <form action="#" method="post">
+   <form action="/" method="get">
        <div class="form-group ad-30" style="margin-top:8px;">
             <div class="input-group search-style">
-                <input class="form-control new-search-bar"  name="country" id="search" placeholder="Enter Your Club Name" type="text">
+                <input class="form-control new-search-bar"  name="clubName" id="search" placeholder="Enter Your Club Name" type="text">
                 <span class="input-group-btn">
                     <button class="btn input-btn" type="" id="search-form">Search</button>
                 </span>
@@ -26,6 +26,8 @@
 </div>
   
 <div class="col-md-12">
+    <input type="hidden" id="name-user" name="name-user" value="<%= user.username %>">
+    <input type="hidden" id="name-image" name="name-image" value="<%= user.userImage %>">
     <div class="">
         <div class="row">
             <div class="col-md-3">
@@ -33,7 +35,7 @@
                     <div class="col-md-12">
                         <div class="filter-container">
                             <div class="card">
-                                <form action="#" method="post">
+                                <form action="/" method="get">
                                     <div class="content">
                                         <p class="filter">
                                             FILTER
@@ -42,7 +44,7 @@
                                         <select class="form-control" name="country" id="country" >
                                             <option value="">Filter By Country</option>
                                             <% country.map( (item, index) => { %>
-                                                <option value="<%= index %>"><%= item._id %></option>
+                                                <option value="<%= item._id %>"><%= item._id %></option>
                                             <%})%>
                                         </select>
                                         <div class="clearfix"></div>
@@ -60,13 +62,16 @@
                     <% data.map( item => { %>
                     <div class="category-list col-md-3" style="margin-right: 10px;">
                         <div class="row">
-                            <form action="#" method="post" id="add-fav">
+                            <form action="/addFav" method="post" id="add-fav">
                                 <div class="item">
                                     <a href="/group/<%= encodeURI(item.name) %>">
                                         <div class="thumbnail">
                                         <img src="http://localhost:8010/uploads/<%= item.image %>" style="width: 300px; height: 300px; object-fit: cover">
                                             <div class="caption">
-                                                <h4><%= item.name %></h4>
+                                                <h4>
+                                                    <%= item.name.replace(/ /g, "-") %>
+                                                    (<%= item.fans.length %>)
+                                                </h4>
                                                 
                                                 <div class="row">
                                                     <div class="col-xs-12 col-md-6">
@@ -76,6 +81,8 @@
                                                     </div>
                                                     
                                                     <div class="col-xs-12 col-md-6">
+                                                        <input type="hidden" name="idClub" id="idClub" value="<%= item._id %>">
+                                                        <input type="hidden" name="nameClub" id="nameClub" value="<%= item.name %>">
                                                         <button class="btn btn-primary add-fav">
                                                             Add To Favorite
                                                         </button>
@@ -99,5 +106,9 @@
     
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>  
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/friend.js"></script>
+<script src="/js/home.js"></script>
+<script src="/js/global.js"></script>
 </body>
 </html>

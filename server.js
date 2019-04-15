@@ -17,11 +17,13 @@ require("./passport/passport-facebook");
 require("./passport/passport-google");
 
 // require routes
-const usersRoute = require("./routes/users");
+
 const authRoute = require("./routes/auth");
 const adminRoute = require("./routes/admin");
 const groupRoute = require("./routes/group");
 const homeRoute = require("./routes/home");
+// const searchRoute = require("./routes/search");
+const privateChatRoute = require("./routes/privateChat");
 
 require('dotenv').config();
 
@@ -30,6 +32,8 @@ const server = http.createServer(app);
 const io = socketIO(server);
 require("./socket/groupChat")(io);
 require("./socket/friend")(io);
+require("./socket/global")(io);
+require("./socket/pm")(io);
 const PORT = process.env.PORT || 8010;
 
 // connect to database
@@ -61,11 +65,12 @@ app.use(flash());
 app.use(express.static("public"));
 
 
-app.use('/', usersRoute);
+
 app.use('/', authRoute);
 app.use('/', adminRoute);
 app.use('/', homeRoute);
 app.use('/', groupRoute);
+app.use('/', privateChatRoute);
 
 
 
