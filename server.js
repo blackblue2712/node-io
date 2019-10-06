@@ -11,6 +11,7 @@ const MongoStore = require('connect-mongo')(session);
 const flash = require("connect-flash");
 const passport = require("passport");
 const socketIO = require("socket.io");
+const { requireSignin } = require("./controllers/auth");
 
 require("./passport/passport-local");
 require("./passport/passport-facebook");
@@ -67,10 +68,10 @@ app.use(express.static("public"));
 
 
 app.use('/', authRoute);
-app.use('/', adminRoute);
-app.use('/', homeRoute);
-app.use('/', groupRoute);
-app.use('/', privateChatRoute);
+app.use('/', requireSignin, adminRoute);
+app.use('/', requireSignin, homeRoute);
+app.use('/', requireSignin , groupRoute);
+app.use('/', requireSignin,  privateChatRoute);
 
 
 

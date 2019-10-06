@@ -16,4 +16,11 @@ module.exports.getSignout = (req, res) => {
     });
 }
 
+module.exports.requireSignin = (req, res, next) => {
+    if(!req.user) {
+        res.redirect("/signin");
+    }
+    next();
+}
+
 // Post
